@@ -1,0 +1,20 @@
+networks:
+  app-tier:
+    driver: bridge
+
+services:
+  mongodb:
+    image: bitnami/mongodb:latest 
+    container_name: mongodb
+    networks:
+      - app-tier
+    environment:
+      MONGODB_ROOT_PASSWORD: djMptEmySw2Hfrmy
+    ports:
+      - "27017:27017" 
+    volumes:
+      - "mongodb_data:/bitnami/mongodb" 
+    restart: unless-stopped 
+
+volumes:
+  mongodb_data: 

@@ -1,0 +1,110 @@
+@base_url = http://127.0.0.1:5555/sys
+@accessToken = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwiZXhwIjoxNzMxNTk2MTQ0fQ.9eOvvG7ZhgxlxpiVr5mNFJAzRbJmPD8Qwwc_Jz9PCIo
+
+###
+#create a captcha
+POST {{base_url}}/user/captcha HTTP/1.1
+Content-Type: application/json
+
+{
+
+}
+
+
+###
+# user login
+POST {{base_url}}/user/login HTTP/1.1
+Content-Type: application/json
+
+{
+    "username":"admin",
+    "password":"admin",
+    "captcha":"kkkb"
+}
+###
+POST {{base_url}}/apps/data HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer {{accessToken}}
+
+{
+    "page":1,
+    "length":20
+}
+
+
+###
+# create app
+POST {{base_url}}/apps/create HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer {{accessToken}}
+
+{
+    "name":"test2",
+    "cpu":"0.1",
+    "memory":"256m"
+}
+
+###
+# delete app
+POST {{base_url}}/apps/delete HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer {{accessToken}}
+
+{
+    "appid":"86GrLzPB"
+}
+###
+# update app
+POST {{base_url}}/apps/update HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer {{accessToken}}
+
+{
+    "appid":"2PM4T681",
+    "cpu":"0.2",
+    "memory":"512m"
+}
+###
+# application info
+POST {{base_url}}/apps/info HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer {{accessToken}}
+
+{
+    "appid":"86GrLzPB"
+}
+
+###
+# create router
+POST {{base_url}}/router/create HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer {{accessToken}}
+
+{
+    "appid":"2PM4T681",
+    "path":"test",
+    "mode":"router"
+}
+
+###
+# delete router
+POST {{base_url}}/router/delete HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer {{accessToken}}
+
+{
+    "id":"6735d2e4cdcbe20f76bef40d"
+}
+
+###
+# create function
+POST {{base_url}}/func/create HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer {{accessToken}}
+
+{
+    "appid":"2PM4T681",
+    "tag":[],
+    "description":"",
+    "mode":"function"
+}
