@@ -12,6 +12,7 @@
 # here put the import lib
 import os
 from dotenv import find_dotenv, load_dotenv
+from models.etcd import ETCD
 
 
 class CONFIG:

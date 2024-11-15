@@ -18,10 +18,12 @@ from models.config import CONFIG
 from apps.sys import sys_services
 from models.db import DB
 from models.middleware import MwJwttoken
+from models.etcd import ETCD
 
 # 初始化配置
 db = DB()
 config = CONFIG()
+etcd = ETCD()
 app = FastAPI()
 templates = Jinja2Templates(directory="templates")
 app.mount("/static", StaticFiles(directory="static"), name="static")
@@ -43,6 +45,7 @@ async def db_init():
     await db.db_init()
     await db.__init_admin_account__()
     await db.__init_settings__()
+    etcd.__db_init__()  # put database password to etcd
 
 
 # 系统操作

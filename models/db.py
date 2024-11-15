@@ -15,7 +15,6 @@ from typing import Optional
 from motor.motor_asyncio import AsyncIOMotorClient
 from pydantic import BaseModel
 from beanie import Document, Indexed, init_beanie
-from beanie.odm.operators.update.general import Set
 from models.config import CONFIG
 from models.passwords import hash_password
 from models.db_model import (
